@@ -7,7 +7,7 @@ import Todo from "../todo";
 const TodoList = () => {
     const [inputValue, setInputValue] = useState("");
     const [todos, setTodos] = useState([]);
-    const [inputSearchValue, setInputSearchValue] = useState("")
+
 
     const formatTodo = {
         title: inputValue,
@@ -18,13 +18,6 @@ const TodoList = () => {
     function handleInputValue(e) {
         e.preventDefault()
         setInputValue(e.target.value)
-    }
-
-    function handleSearchList(e) {
-        setInputSearchValue(e.target.value)
-        if (inputSearchValue.length >= 2) {
-            setTodos(prev => prev.filter(elem => elem.title.include(inputSearchValue)))
-        }
     }
 
     function handleAddTodoButton() {
@@ -53,19 +46,14 @@ const TodoList = () => {
                 </form>
                 <br/>
 
-
-
             </div>
             <div className="main">
-                {  todos.filter(elem => elem.title.includes(inputSearchValue))
-                    .map(elem => <Todo
+                {todos.map(elem => <Todo
                         key={elem.id}
                         deleteTodo={handleDeleteTodo}
                         {...elem}
                     /> )
-
                 }
-
             </div>
             <button>Clear Completed</button>
         </div>
