@@ -7,17 +7,22 @@ const Todo = (props) => {
 
     const [isComplete, setIsComplete] = useState(true)
 
+    function handleClick (e) {
+        if (e.target.style.textDecoration) {
+            e.target.style.removeProperty('text-decoration');
+        } else {
+            e.target.style.setProperty('text-decoration', 'line-through');
+        }
+
+    }
 
     return (
         <div>
             <div className={"todo"}>
-
-
                 <input type="checkbox" onChange={(e) => {
-
                 }}/>
-
-                <p className={"todo_Completed"}>{title}</p>
+                <p onClick={handleClick}
+                   className={"todo_Completed"}>{title}</p>
                 <img
                     className={"icon"}
                     src={deleteIcon}
