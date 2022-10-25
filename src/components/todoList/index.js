@@ -1,18 +1,30 @@
 import React, {useState} from 'react';
 import Todo from "../todo";
 
+
+
+
 const TodoList = () => {
     const [inputValue, setInputValue] = useState("");
     const [todos, setTodos] = useState([]);
+    const [inputSearchValue, setInputSearchValue] = useState("")
 
     const formatTodo = {
         title: inputValue,
         id: Math.random(),
-        completed: false,
+        complete: false,
     }
+
     function handleInputValue(e) {
         e.preventDefault()
         setInputValue(e.target.value)
+    }
+
+    function handleSearchList(e) {
+        setInputSearchValue(e.target.value)
+        if (inputSearchValue.length >= 2) {
+            setTodos(prev => prev.filter(elem => elem.title.include(inputSearchValue)))
+        }
     }
 
     function handleAddTodoButton() {
@@ -41,16 +53,21 @@ const TodoList = () => {
                 </form>
                 <br/>
 
+
+
             </div>
             <div className="main">
-                {  todos.map(elem => <Todo
+                {  todos.filter(elem => elem.title.includes(inputSearchValue))
+                    .map(elem => <Todo
                         key={elem.id}
                         deleteTodo={handleDeleteTodo}
                         {...elem}
                     /> )
+
                 }
-                <button>delete completed</button>
+
             </div>
+            <button>Clear Completed</button>
         </div>
     );
 };

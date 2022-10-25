@@ -5,24 +5,17 @@ const Todo = (props) => {
     const {title, id, deleteTodo} = props;
 
 
-    const [isComplete, setIsComplete] = useState(false)
+    const [isComplete, setIsComplete] = useState(true)
 
 
-    function handleChecked (e) {
-        setIsComplete(e.target.checked)
-    }
-
-   // function handleDeleteIsCompleted(isComplete) {
-   //     isComplete.filter(checked => )
-   //
-   // }
-
-    console.log(isComplete)
     return (
         <div>
             <div className={"todo"}>
 
-                <input type="checkbox" checked={props.isCompleted} onChange={handleChecked} />
+
+                <input type="checkbox" onChange={(e) => {
+
+                }}/>
 
                 <p className={"todo_Completed"}>{title}</p>
                 <img
@@ -33,6 +26,7 @@ const Todo = (props) => {
                 />
 
             </div>
+
         </div>
 
     );
